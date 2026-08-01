@@ -1,3 +1,5 @@
+import express from "express";
+
 import 'dotenv/config';
 import { sendTelegram } from './telegram.js';
 import { startMonitor } from "./monitor.js";
@@ -15,3 +17,14 @@ try {
 setInterval(() => {
   console.log("Running...");
 }, 60000);
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("X Keyword Monitor Running");
+});
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server listening on ${PORT}`);
+});
