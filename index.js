@@ -1,7 +1,16 @@
 import 'dotenv/config';
-import keywords from './keywords.json' with { type: 'json' };
+import { sendTelegram } from './telegram.js';
 
-console.log('X Keyword Monitor starter');
-console.log('Loaded keywords:', keywords);
-console.log('Telegram Chat ID:', process.env.TELEGRAM_CHAT_ID);
-console.log('Implement monitor logic in monitor.js');
+console.log("🚀 X Keyword Monitor Started");
+
+try {
+  await sendTelegram("✅ X Keyword Monitor is now online!");
+  console.log("Telegram test message sent.");
+} catch (err) {
+  console.error("Telegram Error:", err.message);
+}
+
+// Keep Render service alive
+setInterval(() => {
+  console.log("Running...");
+}, 60000);
